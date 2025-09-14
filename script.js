@@ -1,1 +1,9 @@
-console.log("Hello World")
+function Book(title, author, pages, haveRead) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.haveRead = haveRead;
+    this.getInfo = function() {
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${haveRead ? "have read" : "have not read"}.`
+    } 
+}
