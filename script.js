@@ -22,11 +22,16 @@ function addBookToLibrary(title, author, pages, haveRead) {
 }
 
 function displayBooks() {
-    const bookTable = document.querySelector("table") 
+    const bookTable = document.querySelector("table")
+    const bookrows = document.querySelectorAll(".book-row"); 
+    bookrows.forEach(element => {
+        element.remove()        
+    });
     for (let i = 0; i < myLibrary.length; i++) {
         console.log(myLibrary[i].getInfo())
 
         const newBook = document.createElement("tr");
+        newBook.classList.add("book-row")
         newBook.innerHTML = `<td>${myLibrary[i].title}</td><td>${myLibrary[i].author}</td><td>${myLibrary[i].pages}</td><td>${myLibrary[i].haveRead ? "Yes" : "No"}</td>`
         bookTable.appendChild(newBook)
     }    
@@ -38,6 +43,21 @@ const addBookBtn = document.querySelector("#add-book-btn");
 addBookBtn.onclick = () => {
     addBookModal.showModal()
 }
+
+const bookForm = document.getElementById("book-form")
+bookForm.addEventListener("submit", (event) => {
+    event.preventDefault()
+
+    const title = document.querySelector("#title").value;
+    const author = document.querySelector("#author").value;
+    const pages = parseInt(document.querySelector("#pages").value);
+    const haveRead = document.querySelector("#read").checked;
+
+    addBookToLibrary(title, author, pages, haveRead)
+    displayBooks()
+    bookForm.reset()
+    addBookModal.close()
+})
 
 const addBookModal = document.querySelector("#add-book-modal");
 
