@@ -32,7 +32,7 @@ function displayBooks() {
 
         const newBook = document.createElement("tr");
         newBook.classList.add("book-row")
-        newBook.innerHTML = `<td>${myLibrary[i].title}</td><td>${myLibrary[i].author}</td><td>${myLibrary[i].pages}</td><td>${myLibrary[i].haveRead ? "Yes" : "No"}</td>`
+        newBook.innerHTML = `<td>${myLibrary[i].title}</td><td>${myLibrary[i].author}</td><td>${myLibrary[i].pages}</td><td>${myLibrary[i].haveRead ? "Yes" : "No"}</td><td><button class="remove-book-btn" id="${myLibrary[i].id}">X</button></td>`
         bookTable.appendChild(newBook)
     }    
 }
@@ -61,6 +61,15 @@ bookForm.addEventListener("submit", (event) => {
 
 const addBookModal = document.querySelector("#add-book-modal");
 
+
+/* Deleting Book */
+
+const deleteBookBtn = document.querySelectorAll(".remove-book-btn")
+deleteBookBtn.forEach((book) => {
+    book.addEventListener("click", (event) => {
+        console.log(book.id)
+    })
+})
 
 /* Testing */
 
