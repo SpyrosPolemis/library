@@ -8,14 +8,13 @@ function Book(title, author, pages, haveRead) {
     this.pages = pages;
     this.haveRead = haveRead;
     this.id = crypto.randomUUID()
-
 }
 
 Book.prototype.getInfo = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.haveRead ? "have read" : "have not read"}.`
 } 
 
-/* Helpers */
+/* Book Helpers */
 
 function addBookToLibrary(title, author, pages, haveRead) {
     // Creates a book object and stores it in myLibrary array
@@ -32,6 +31,17 @@ function displayBooks() {
         bookTable.appendChild(newBook)
     }    
 }
+
+/* Adding Book */
+
+const addBookBtn = document.querySelector("#add-book-btn");
+addBookBtn.onclick = () => {
+    addBookModal.showModal()
+}
+
+const addBookModal = document.querySelector("#add-book-modal");
+
+
 /* Testing */
 
 addBookToLibrary("1984", "George Orwell", 328, true);
