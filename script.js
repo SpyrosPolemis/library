@@ -22,6 +22,15 @@ function addBookToLibrary(title, author, pages, hasRead) {
     myLibrary.push(new Book(title, author, pages, hasRead))
 }
 
+function loopArray() {
+    for (let i = 0; i < myLibrary.length; i++) {
+        console.log(myLibrary[i].getInfo())
+        
+        const newBook = document.createElement("div");
+        newBook.classList.add("book")
+        document.body.appendChild(newBook)
+    }    
+}
 /* Testing */
 
 addBookToLibrary("1984", "George Orwell", 328, true);
