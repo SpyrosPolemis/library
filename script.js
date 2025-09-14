@@ -17,18 +17,19 @@ Book.prototype.getInfo = function() {
 
 /* Helpers */
 
-function addBookToLibrary(title, author, pages, hasRead) {
+function addBookToLibrary(title, author, pages, haveRead) {
     // Creates a book object and stores it in myLibrary array
-    myLibrary.push(new Book(title, author, pages, hasRead))
+    myLibrary.push(new Book(title, author, pages, haveRead))
 }
 
-function loopArray() {
+function displayBooks() {
+    const bookTable = document.querySelector("table") 
     for (let i = 0; i < myLibrary.length; i++) {
         console.log(myLibrary[i].getInfo())
-        
-        const newBook = document.createElement("div");
-        newBook.classList.add("book")
-        document.body.appendChild(newBook)
+
+        const newBook = document.createElement("tr");
+        newBook.innerHTML = `<td>${myLibrary[i].title}</td><td>${myLibrary[i].author}</td><td>${myLibrary[i].pages}</td><td>${myLibrary[i].hasRead}</td>`
+        bookTable.appendChild(newBook)
     }    
 }
 /* Testing */

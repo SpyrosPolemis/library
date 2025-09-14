@@ -8,3 +8,9 @@
     padding: 20px;
     margin: 20px;
 }
+
+tr, td {
+    border: 1px solid black;
+    padding: 4px;
+    margin: 4px;
+}
