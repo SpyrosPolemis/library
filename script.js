@@ -28,7 +28,7 @@ function displayBooks() {
         console.log(myLibrary[i].getInfo())
 
         const newBook = document.createElement("tr");
-        newBook.innerHTML = `<td>${myLibrary[i].title}</td><td>${myLibrary[i].author}</td><td>${myLibrary[i].pages}</td><td>${myLibrary[i].hasRead}</td>`
+        newBook.innerHTML = `<td>${myLibrary[i].title}</td><td>${myLibrary[i].author}</td><td>${myLibrary[i].pages}</td><td>${myLibrary[i].haveRead ? "Yes" : "No"}</td>`
         bookTable.appendChild(newBook)
     }    
 }
@@ -37,3 +37,4 @@ function displayBooks() {
 addBookToLibrary("1984", "George Orwell", 328, true);
 addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, false);
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
+displayBooks()
