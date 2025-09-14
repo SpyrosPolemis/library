@@ -1,5 +1,7 @@
 const myLibrary = [];
 
+/* Book Object */
+
 function Book(title, author, pages, haveRead) {
     this.title = title;
     this.author = author;
@@ -13,10 +15,14 @@ Book.prototype.getInfo = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.haveRead ? "have read" : "have not read"}.`
 } 
 
+/* Helpers */
+
 function addBookToLibrary(title, author, pages, hasRead) {
     // Creates a book object and stores it in myLibrary array
     myLibrary.push(new Book(title, author, pages, hasRead))
 }
+
+/* Testing */
 
 addBookToLibrary("1984", "George Orwell", 328, true);
 addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, false);
