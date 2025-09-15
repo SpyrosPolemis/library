@@ -40,13 +40,13 @@ function displayBooks() {
     deleteBookBtn.forEach((book) => {
         book.addEventListener("click", () => {
             let bookToDelete = book.id;
-            console.log(`Book id to delete: ${bookToDelete}`)
+            // console.log(`Book id to delete: ${bookToDelete}`)
 
             let index =  myLibrary.findIndex(item => item.id == bookToDelete)
-            console.log(`Index of book to delete: ${index}`)
+            // console.log(`Index of book to delete: ${index}`)
 
             myLibrary.splice(index, 1)
-            console.log(myLibrary)
+            // console.log(myLibrary)
 
             displayBooks()
         })
@@ -78,6 +78,9 @@ bookForm.addEventListener("submit", (event) => {
 const addBookModal = document.querySelector("#add-book-modal");
 
 /* Testing */
+
+const addSampleBooksButton = document.querySelector("#add-sample-books-btn")
+addSampleBooksButton.onclick = addSampleBooks
 
 function addSampleBooks() {
     addBookToLibrary("1984", "George Orwell", 328, true);
