@@ -28,13 +28,29 @@ function displayBooks() {
         element.remove()        
     });
     for (let i = 0; i < myLibrary.length; i++) {
-        console.log(myLibrary[i].getInfo())
+        console.log(myLibrary[i].getInfo() + myLibrary[i].id)
 
         const newBook = document.createElement("tr");
         newBook.classList.add("book-row")
         newBook.innerHTML = `<td>${myLibrary[i].title}</td><td>${myLibrary[i].author}</td><td>${myLibrary[i].pages}</td><td>${myLibrary[i].haveRead ? "Yes" : "No"}</td><td><button class="remove-book-btn" id="${myLibrary[i].id}">X</button></td>`
         bookTable.appendChild(newBook)
     }    
+
+    const deleteBookBtn = document.querySelectorAll(".remove-book-btn")
+    deleteBookBtn.forEach((book) => {
+        book.addEventListener("click", () => {
+            let bookToDelete = book.id;
+            console.log(`Book id to delete: ${bookToDelete}`)
+
+            let index =  myLibrary.findIndex(item => item.id == bookToDelete)
+            console.log(`Index of book to delete: ${index}`)
+
+            myLibrary.splice(index, 1)
+            console.log(myLibrary)
+
+            displayBooks()
+        })
+    })
 }
 
 /* Adding Book */
@@ -61,17 +77,14 @@ bookForm.addEventListener("submit", (event) => {
 
 const addBookModal = document.querySelector("#add-book-modal");
 
-
-/* Deleting Book */
-
-const deleteBookBtn = document.querySelectorAll(".remove-book-btn")
-deleteBookBtn.forEach((book) => {
-    book.addEventListener("click", (event) => {
-        console.log(book.id)
-    })
-})
-
 /* Testing */
+
+function addSampleBooks() {
+    addBookToLibrary("1984", "George Orwell", 328, true);
+    addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, false);
+    addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
+    displayBooks()
+}
 
 addBookToLibrary("1984", "George Orwell", 328, true);
 addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, false);
