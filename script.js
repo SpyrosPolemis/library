@@ -14,6 +14,11 @@ Book.prototype.getInfo = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.haveRead ? "have read" : "have not read"}.`
 } 
 
+Book.prototype.changeReadStatus = function() {
+    this.haveRead = !this.haveRead
+    displayBooks()
+}
+
 /* Book Helpers */
 
 function addBookToLibrary(title, author, pages, haveRead) {
@@ -32,12 +37,12 @@ function displayBooks() {
 
         const newBook = document.createElement("tr");
         newBook.classList.add("book-row")
-        newBook.innerHTML = `<td>${myLibrary[i].title}</td><td>${myLibrary[i].author}</td><td>${myLibrary[i].pages}</td><td>${myLibrary[i].haveRead ? "Yes" : "No"}</td><td><button class="remove-book-btn" id="${myLibrary[i].id}">X</button></td>`
+        newBook.innerHTML = `<td>${myLibrary[i].title}</td><td>${myLibrary[i].author}</td><td>${myLibrary[i].pages}</td><td><button class="change-read-status-btn" id="${myLibrary[i].id}">${myLibrary[i].haveRead ? "Yes" : "No"}</button></td><td><button class="remove-book-btn" id="${myLibrary[i].id}">X</button></td>`
         bookTable.appendChild(newBook)
     }    
 
-    const deleteBookBtn = document.querySelectorAll(".remove-book-btn")
-    deleteBookBtn.forEach((book) => {
+    const deleteBookBtns = document.querySelectorAll(".remove-book-btn")
+    deleteBookBtns.forEach((book) => {
         book.addEventListener("click", () => {
             let bookToDelete = book.id;
             // console.log(`Book id to delete: ${bookToDelete}`)
@@ -49,6 +54,15 @@ function displayBooks() {
             // console.log(myLibrary)
 
             displayBooks()
+        })
+    })
+
+    const changeReadStatusButtons = document.querySelectorAll(".change-read-status-btn")
+    changeReadStatusButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            let bookToChange = button.id;
+            let index = myLibrary.findIndex(book => book.id == bookToChange)
+            myLibrary[index].changeReadStatus()
         })
     })
 }
