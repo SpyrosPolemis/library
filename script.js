@@ -1,24 +1,24 @@
 const myLibrary = [];
 
 /* Book Object */
+class Book {
+    constructor(title, author, pages, haveRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.haveRead = haveRead;
+        this.id = crypto.randomUUID()
+    }
 
-function Book(title, author, pages, haveRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.haveRead = haveRead;
-    this.id = crypto.randomUUID()
+    get info() {
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.haveRead ? "have read" : "have not read"}.`
+    }
+
+    changeReadStatus() {
+        this.haveRead = !this.haveRead
+        displayBooks()
+    }
 }
-
-Book.prototype.getInfo = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.haveRead ? "have read" : "have not read"}.`
-} 
-
-Book.prototype.changeReadStatus = function() {
-    this.haveRead = !this.haveRead
-    displayBooks()
-}
-
 /* Book Helpers */
 
 function addBookToLibrary(title, author, pages, haveRead) {
@@ -34,7 +34,7 @@ function displayBooks() {
         element.remove()        
     });
     for (let i = 0; i < myLibrary.length; i++) {
-        console.log(myLibrary[i].getInfo() + myLibrary[i].id)
+        console.log(myLibrary[i].info + myLibrary[i].id)
 
         const newBook = document.createElement("tr");
         newBook.classList.add("book-row")
