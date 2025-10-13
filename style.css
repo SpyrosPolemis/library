@@ -13,6 +13,10 @@ body {
     background-color: #08414D;
 }
 
+.none {
+    display: none;
+}
+
 body > button {
     border: #A9862F 2px solid;
     border-radius: 0px 0px 10px 10px;

@@ -28,6 +28,7 @@ function addBookToLibrary(title, author, pages, haveRead) {
 
 function displayBooks() {
     const bookTable = document.querySelector("table")
+    bookTable.classList.remove("none")
     const bookrows = document.querySelectorAll(".book-row"); 
     bookrows.forEach(element => {
         element.remove()        
@@ -54,6 +55,9 @@ function displayBooks() {
             // console.log(myLibrary)
 
             displayBooks()
+            if (myLibrary.length === 0) {
+                bookTable.classList.add("none")
+            }
         })
     })
 
